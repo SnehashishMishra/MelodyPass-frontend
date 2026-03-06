@@ -11,6 +11,7 @@ export default function AttendeeLayout({
     { label: "Dashboard", href: "/attendee/dashboard" },
     { label: "Bookings", href: "/attendee/bookings" },
     { label: "Reviews", href: "/attendee/reviews" },
+    { label: "Tickets", href: "/attendee/tickets" },
   ];
 
   return (
