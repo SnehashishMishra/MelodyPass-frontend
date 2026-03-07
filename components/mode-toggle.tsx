@@ -17,7 +17,7 @@ export function ModeToggle() {
     <div className="ml-4 cursor-pointer">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon">
+          <Button className="cursor-pointer" variant="secondary" size="icon">
             <Sun className="h-4 w-4 cursor-pointer dark:hidden" />
             <Moon className="hidden h-4 w-4 cursor-pointer dark:block" />
           </Button>

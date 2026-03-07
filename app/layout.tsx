@@ -94,46 +94,6 @@ export const metadata: Metadata = {
   applicationName: "MelodyPass",
 };
 
-// Dynamic metadata generation for event pages
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/${params.id}`,
-    { cache: "no-store" },
-  );
-
-  const event = await res.json();
-
-  return {
-    title: event.title,
-    description: event.description,
-
-    openGraph: {
-      title: event.title,
-      description: event.description,
-      url: `https://melodypass.vercel.app/events/${params.id}`,
-      siteName: "MelodyPass",
-
-      images: [
-        {
-          url: "/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: event.title,
-        },
-      ],
-
-      type: "website",
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: event.title,
-      description: event.description,
-      images: ["/og-image.png"],
-    },
-  };
-}
-
 export default function RootLayout({
   children,
 }: {

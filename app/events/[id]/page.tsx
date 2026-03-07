@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import api from "@/lib/api";
-import Navbar from "@/components/navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import SeatMap from "@/components/seat-map";
 
