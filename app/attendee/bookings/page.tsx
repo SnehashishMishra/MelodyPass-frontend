@@ -74,7 +74,11 @@ export default function AttendeeBookings() {
                 <td className="p-3">{b.event_title}</td>
 
                 <td className="p-3">
-                  {new Date(b.event_date).toLocaleDateString()}
+                  {new Date(b.event_date).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}
                 </td>
 
                 <td className="p-3 text-center">{b.seats}</td>

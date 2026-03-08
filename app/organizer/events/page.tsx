@@ -227,7 +227,11 @@ export default function OrganizerEvents() {
               <td className="px-6 py-3">{e.title}</td>
 
               <td className="p-3 text-center">
-                {new Date(e.event_date).toLocaleDateString()}
+                {new Date(e.event_date).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })}
               </td>
 
               <td className="px-6 py-3 text-right">

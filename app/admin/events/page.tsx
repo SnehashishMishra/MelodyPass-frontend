@@ -48,7 +48,11 @@ export default function AdminEvents() {
               <td className="p-3">{event.venue}</td>
 
               <td className="p-3">
-                {new Date(event.event_date).toLocaleDateString()}
+                {new Date(event.event_date).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })}
               </td>
 
               <td className="p-3 text-center">

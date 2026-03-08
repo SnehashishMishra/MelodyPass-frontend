@@ -34,7 +34,11 @@ export default function AttendeeReviews() {
             <p>{r.comment}</p>
 
             <p className="text-xs text-muted-foreground">
-              {new Date(r.created_at).toLocaleDateString()}
+              {new Date(r.created_at).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
             </p>
           </div>
         ))}
