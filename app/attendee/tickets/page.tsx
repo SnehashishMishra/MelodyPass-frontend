@@ -45,6 +45,7 @@ export default function AttendeeTickets() {
           <tr>
             <th className="p-3 text-left">Event</th>
             <th className="p-3 text-left">Venue</th>
+            <th className="p-3">Date</th>
             <th className="p-3">Seats</th>
             <th className="p-3">Amount</th>
             <th className="p-3">Action</th>
@@ -57,6 +58,14 @@ export default function AttendeeTickets() {
               <td className="p-3">{t.event_title}</td>
 
               <td className="p-3">{t.venue}</td>
+
+              <td className="p-3 text-center">
+                {new Date(t.event_date).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </td>
 
               <td className="p-3 text-center">{t.seats}</td>
 

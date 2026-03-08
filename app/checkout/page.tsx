@@ -48,7 +48,7 @@ export default function CheckoutPage() {
 
   if (!checkoutData) return null;
 
-  const totalAmount = checkoutData.seats.length * pricePerTicket;
+  const totalAmount = checkoutData.seats.length * checkoutData.ticket_price;
 
   // ----------------------
   // CARD NAME FORMAT
@@ -180,7 +180,6 @@ export default function CheckoutPage() {
             <p className="font-semibold mb-2">Selected Seats</p>
 
             <div className="flex flex-wrap gap-2">
-              {console.log(checkoutData.seats)}
               {checkoutData.seats.map((s: any, index: number) => (
                 <span
                   key={s.id || index}

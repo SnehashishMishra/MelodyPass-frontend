@@ -21,14 +21,22 @@ export default function SeatMap({ eventId }: { eventId: string }) {
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [locked, setLocked] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [ticketPrice, setTicketPrice] = useState<number>(0);
   const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    async function fetchSeats() {
+    async function fetchSeatsAndEvent() {
       try {
-        const res = await api.get(`/events/${eventId}/seats`);
-        setSeats(res.data);
+        const seatRes = await api.get(`/events/${eventId}/seats`);
+        setSeats(seatRes.data);
+
+        const eventsRes = await api.get("/events");
+        const event = eventsRes.data.find((e: any) => e._id === eventId);
+
+        if (event) {
+          setTicketPrice(event.ticket_price);
+        }
       } catch (err) {
         console.error("Failed to load seats", err);
       } finally {
@@ -36,7 +44,7 @@ export default function SeatMap({ eventId }: { eventId: string }) {
       }
     }
 
-    fetchSeats();
+    fetchSeatsAndEvent();
   }, [eventId]);
 
   const toggleSeat = (seat: Seat) => {
@@ -184,6 +192,7 @@ export default function SeatMap({ eventId }: { eventId: string }) {
                     "checkout_data",
                     JSON.stringify({
                       event_id: eventId,
+                      ticket_price: ticketPrice,
                       seats: selectedSeats.map((seatId) => {
                         const seat = seats.find((s) => s._id === seatId);
 

@@ -110,7 +110,7 @@ export default function RootLayout({
         >
           <AuthProvider>
             <Navbar />
-            <main className="min-h-[calc(100vh-80px)] mt-12">{children}</main>
+            <main className="min-h-[calc(100vh-120px)] mt-12">{children}</main>
           </AuthProvider>
         </ThemeProvider>
       </body>

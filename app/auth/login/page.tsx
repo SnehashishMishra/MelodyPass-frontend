@@ -53,7 +53,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-80px)]">
+    <div className="flex justify-center items-center min-h-[calc(100vh-120px)]">
       <Card className="w-96">
         <CardContent className="space-y-4 p-6">
           <h2 className="text-xl font-bold text-center">Login</h2>
