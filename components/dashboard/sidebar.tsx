@@ -3,24 +3,36 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Sidebar({ items }: { items: any[] }) {
-  const path = usePathname();
+interface SidebarItem {
+  label: string;
+  href: string;
+  icon?: any;
+}
 
+export default function Sidebar({ items }: { items: SidebarItem[] }) {
+  const pathname = usePathname();
   return (
-    <div className="w-64 min-h-screen border-r p-6 space-y-4">
-      <h2 className="text-xl font-bold">Dashboard</h2>
+    <aside className="w-64 mt-4 border-r border-border min-h-screen p-4">
+      <nav className="space-y-2">
+        {items.map((item) => {
+          const Icon = item.icon;
 
-      {items.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={`block p-2 rounded-lg ${
-            path === item.href ? "bg-primary text-white" : "hover:bg-muted"
-          }`}
-        >
-          {item.label}
-        </Link>
-      ))}
-    </div>
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex items-center gap-3 p-3 rounded-lg transition ${
+                pathname === item.href
+                  ? "bg-primary/20 text-primary"
+                  : "hover:bg-muted"
+              }`}
+            >
+              {Icon && <Icon size={18} />}
+              <span>{item.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
+    </aside>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Sidebar from "@/components/dashboard/sidebar";
+import { BarChart3, CalendarDays, Star } from "lucide-react";
 
 export default function OrganizerLayout({
   children,
@@ -8,9 +9,9 @@ export default function OrganizerLayout({
   children: React.ReactNode;
 }) {
   const menu = [
-    { label: "Analytics", href: "/organizer/analytics" },
-    { label: "Events", href: "/organizer/events" },
-    { label: "Reviews", href: "/organizer/reviews" },
+    { label: "Analytics", href: "/organizer/analytics", icon: BarChart3 },
+    { label: "Events", href: "/organizer/events", icon: CalendarDays },
+    { label: "Reviews", href: "/organizer/reviews", icon: Star },
   ];
 
   return (
