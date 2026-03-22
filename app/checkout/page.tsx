@@ -218,6 +218,7 @@ export default function CheckoutPage() {
             />
 
             <Input
+              type="password"
               placeholder="CVV"
               value={cvv}
               onChange={handleCVV}
