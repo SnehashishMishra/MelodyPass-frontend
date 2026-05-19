@@ -19,6 +19,26 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<any>({});
   const [showPassword, setShowPassword] = useState(false);
 
+  const allowedDomains = [
+    "gmail.com",
+    "yahoo.com",
+    "outlook.com",
+    "hotmail.com",
+    "proton.me",
+    "protonmail.com",
+    "icloud.com",
+    "live.com",
+    "srmist.edu.in",
+  ];
+
+  const handleNameChange = (e: any) => {
+    const value = e.target.value;
+
+    if (/^[A-Za-z\s]*$/.test(value)) {
+      setName(value);
+    }
+  };
+
   const validate = () => {
     const newErrors: any = {};
 
@@ -27,8 +47,16 @@ export default function RegisterPage() {
     if (username.length < 4)
       newErrors.username = "Username must be at least 4 characters";
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = "Invalid email format";
+    } else {
+      const domain = email.split("@")[1];
+
+      if (!allowedDomains.includes(domain)) {
+        newErrors.email =
+          "Please use a valid email provider (e.g. Gmail, Outlook, SRM)";
+      }
+    }
 
     if (
       password.length < 6 ||
@@ -85,7 +113,7 @@ export default function RegisterPage() {
             <Input
               placeholder="Full Name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleNameChange}
             />
             {errors.name && (
               <p className="text-red-500 text-xs mt-1">{errors.name}</p>

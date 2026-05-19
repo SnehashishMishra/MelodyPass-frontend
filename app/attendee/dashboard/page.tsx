@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 import {
   BarChart,
@@ -19,6 +20,7 @@ import {
 import { Ticket, IndianRupee, Star, Calendar } from "lucide-react";
 
 const COLORS = ["#f97316", "#22c55e", "#3b82f6", "#ef4444", "#7c3aed"];
+const BARCOLORS = ["#7c3aed", "#f97316", "#22c55e", "#3b82f6", "#ef4444"];
 
 export default function AttendeeDashboard() {
   const [data, setData] = useState<any>(null);
@@ -100,7 +102,6 @@ export default function AttendeeDashboard() {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={data.event_stats}>
               <XAxis dataKey="event_title" />
-
               <YAxis />
 
               <Tooltip
@@ -114,7 +115,14 @@ export default function AttendeeDashboard() {
                 cursor={false}
               />
 
-              <Bar dataKey="tickets" fill="#7c3aed" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="tickets" radius={[6, 6, 0, 0]}>
+                {data.event_stats.map((_: any, index: number) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={BARCOLORS[index % BARCOLORS.length]}
+                  />
+                ))}
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -158,14 +166,37 @@ export default function AttendeeDashboard() {
       <div className="glass p-6 rounded-xl">
         <h2 className="text-lg font-semibold mb-4">Your Events</h2>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {data.event_stats.map((event: any, index: number) => (
             <div
               key={index}
-              className="flex justify-between border-b pb-2 text-sm"
+              className="flex items-center justify-between border-b pb-3 text-sm"
             >
-              <span className="text-muted-foreground">{event.event_title}</span>
+              {/* Left */}
+              <div className="flex justify-start items-start gap-4">
+                <span className="text-foreground font-medium">
+                  {event.event_title}
+                </span>
 
+                {/* Status Badge */}
+                <div className="mt-1">
+                  {event.status === "upcoming" && (
+                    <Badge className="bg-green-500 hover:bg-green-600 text-white">
+                      Upcoming
+                    </Badge>
+                  )}
+
+                  {event.status === "booking_closed" && (
+                    <Badge variant="secondary">Booking Closed</Badge>
+                  )}
+
+                  {event.status === "completed" && (
+                    <Badge variant="destructive">Completed</Badge>
+                  )}
+                </div>
+              </div>
+
+              {/* Right */}
               <span className="font-medium">
                 {event.tickets} tickets | ₹{event.amount}
               </span>

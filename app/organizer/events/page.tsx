@@ -161,7 +161,7 @@ export default function OrganizerEvents() {
               onChange={(e) => setCategoryId(e.target.value)}
             >
               <option className="bg-background" value="">
-                Select Category
+                Select Genre
               </option>
 
               {categories.map((c) => (

@@ -31,7 +31,7 @@ export default function AdminEvents() {
         <thead className="bg-muted">
           <tr>
             <th className="p-3 text-left">Event</th>
-            <th className="p-3 text-left">Category</th>
+            <th className="p-3 text-left">Genres</th>
             <th className="p-3 text-left">Venue</th>
             <th className="p-3 text-left">Date</th>
             <th className="p-3 text-center">Action</th>

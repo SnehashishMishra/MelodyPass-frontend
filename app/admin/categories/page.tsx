@@ -35,11 +35,11 @@ export default function CategoriesPage() {
 
   return (
     <div className="space-y-6 w-4/5 mx-auto">
-      <h1 className="text-2xl font-bold">Categories</h1>
+      <h1 className="text-2xl font-bold">Genres</h1>
 
       <div className="flex gap-4">
         <Input
-          placeholder="Category name"
+          placeholder="Genre name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -52,7 +52,7 @@ export default function CategoriesPage() {
         <table className="w-full border rounded-xl overflow-hidden">
           <thead className="bg-muted">
             <tr>
-              <th className="pl-6 py-3 text-left">Category</th>
+              <th className="pl-6 py-3 text-left">Genres</th>
               <th className="pr-8 py-3 text-right">Action</th>
             </tr>
           </thead>
